@@ -124,6 +124,8 @@ $$
 $$
 我们将其记为 $J^{\theta^{\prime}}(\theta)$，因为$J^{\theta^{\prime}}(\theta)$ 括号里面的 $\theta$ 代表我们要去优化的参数。$\theta'$  是指我们用 $\theta'$  做示范，就是现在真正在与环境交互的是 $\theta'$。因为 $\theta$ 不与环境交互，是 $\theta'$  在与环境交互。然后我们用 $\theta'$  与环境交互，采样出 $s_t$、$a_t$ 以后，要去计算 $s_t$ 与 $a_t$ 的优势 $A^{\theta^{\prime}}\left(s_{t}, a_{t}\right)$，再用它乘 $\frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{\prime}}\left(a_{t} | s_{t}\right)}$。$\frac{p_{\theta}\left(a_{t} | s_{t}\right)}{p_{\theta^{\prime}}\left(a_{t} | s_{t}\right)}$ 是容易计算的，我们可以从采样的结果来估测$A^{\theta^{\prime}}\left(s_{t}, a_{t}\right)$ ，所以 $J^{\theta^{\prime}}(\theta)$ 是可以计算的。实际上在更新参数的时候，我们就是按照式(5.5)来更新参数的。
 
+note: $p_{\theta^{\prime}}\left(a_{t} | s_{t}\right)$在一次更新中，是固定的，这些样本会被训练多次；而$p_{\theta} \left(a_{t} | s_{t} \right)$随着参数更新，一直在变。
+
 ## 5.2 近端策略优化 
 
 我们可以通过重要性采样把同策略换成异策略，但重要性采样有一个问题：如果 $p_{\theta}\left(a_{t} | s_{t}\right)$ 与 $p_{\theta'}\left(a_{t} | s_{t}\right)$ 相差太多，即这两个分布相差太多，重要性采样的结果就会不好。
